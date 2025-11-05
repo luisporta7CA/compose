@@ -434,7 +434,9 @@ services:
     volumes:
       - ./volumes/pooler/pooler.exs:/etc/pooler/pooler.exs:ro,z
     ports:
-      - "6543": "6543"
+      - published: 6543
+        target: 6543
+        protocol: tcp
     healthcheck:
       test:
         [
