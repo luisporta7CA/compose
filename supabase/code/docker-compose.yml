@@ -8,21 +8,6 @@
 name: supabase
 
 services:
-
-  n8n:
-    image: n8nio/n8n:latest
-    restart: always
-    environment:
-      - WEBHOOK_URL=https://paneln8n.clicandapp.com/
-      - GENERIC_TIMEZONE=Europe/Madrid
-      - TZ=Europe/Madrid
-      - N8N_DEFAULT_LOCALE=es
-      # (add authentication variables or any other needed variables)
-    depends_on:
-      - db
-    ports:
-      - "5678:5678"
-      
   studio:
     image: supabase/studio:2025.05.19-sha-3487831
     restart: unless-stopped
@@ -465,8 +450,9 @@ services:
         condition: service_healthy
       analytics:
         condition: service_healthy
+      ports:
+        - "6543:6543"
     environment:
-      PORT: 4000
       POSTGRES_PORT: ${POSTGRES_PORT}
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
