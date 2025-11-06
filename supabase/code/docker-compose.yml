@@ -432,6 +432,10 @@ services:
     restart: unless-stopped
     volumes:
       - ./volumes/pooler/pooler.exs:/etc/pooler/pooler.exs:ro,z
+    ports:
+      - published: 6543
+        target: 6543
+        protocol: tcp
     healthcheck:
       test:
         [
@@ -451,10 +455,6 @@ services:
         condition: service_healthy
       analytics:
         condition: service_healthy
-      ports:
-      - published: 6543
-        target: 6543
-        protocol: tcp
     environment:
       PORT: 4000
       POSTGRES_PORT: ${POSTGRES_PORT}
