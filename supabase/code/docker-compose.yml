@@ -454,7 +454,7 @@ services:
       ports:
       - published: 6543
         target: 6543
-        protocol: tcp.
+        protocol: tcp
     environment:
       PORT: 4000
       POSTGRES_PORT: ${POSTGRES_PORT}
